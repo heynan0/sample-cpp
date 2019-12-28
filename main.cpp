@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+
+#include "FakeClass.h"
 
 void printMessage()
 {
@@ -44,8 +47,16 @@ int doPrettyMuchNothing(std::string someString)
     return 123;
 }
 
+void useFakeClass()
+{
+    FakeClass fakeObject;
+    std::cout << "Fake token: " << fakeObject.getFakeToken() << std::endl;
+}
+
 int main()
 {
+    // To experiment with analysis finding secret tokens in code
+    std::string FAKE_TOKENN = "b15067bc-8721-470b-a0df-9bc2fa9bd885";
     printMessage();
 
     doTheCount();
@@ -53,6 +64,8 @@ int main()
 
     int thisIsAnUnusedVariable;
     int thisIsAnotherUnusedVariableThatIsSet = 123;
+
+    useFakeClass();
 
     //return 0;
 }
