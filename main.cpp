@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <map>
 
 #include "FakeClass.h"
 
@@ -53,6 +54,28 @@ void useFakeClass()
     std::cout << "Fake token: " << fakeObject.getFakeToken() << std::endl;
 }
 
+void experimentWithArrays()
+{
+    int numbers[3] = { 1, 2, 3 };
+    int index = 1;
+    std::cout << "Array element: " << numbers[index++] << std::endl;
+}
+
+void workWithMap()
+{
+    std::map<char, int> letterToIntMap;
+    letterToIntMap['a'] = 10;
+    letterToIntMap['c'] = 30;
+    letterToIntMap['e'] = 60;
+
+    std::map<char, int>::iterator it;
+    it = letterToIntMap.find('c');
+    if (it != letterToIntMap.end())
+    {
+        std::cout << it->first << ": " << it->second << std::endl;
+    }
+}
+
 int main()
 {
     // To experiment with analysis finding secret tokens in code
@@ -66,6 +89,8 @@ int main()
     int thisIsAnotherUnusedVariableThatIsSet = 123;
 
     useFakeClass();
+    experimentWithArrays();
+    workWithMap();
 
     //return 0;
 }
