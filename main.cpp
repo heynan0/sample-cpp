@@ -76,6 +76,50 @@ void workWithMap()
     }
 }
 
+# define BUFFERSIZE 4
+void readChars()
+{
+    char buffer[BUFFERSIZE];
+    std::cout << "Type something: ";
+    // type more than BUFFERSIZE chars and program will crash:
+    gets(buffer);
+    std::cout << "You typed: " << buffer << std::endl;
+
+    char buffer2[BUFFERSIZE];
+    std::cout << "Type something (Cin): ";
+    // use of cin w/o specifying input length
+    std::cin >> buffer2;
+    buffer2[BUFFERSIZE - 1] = '\0';
+    std::cout << "You typed: " << buffer2 << std::endl;
+}
+
+void localVarHidesParamVar(int paramVar)
+{
+    // error: declaration of 'int paramVar' shadows a parameter
+    // (already caught by compiler)
+    // int paramVar = 123;
+    std::cout << "The local var hides the param var: " << paramVar << std::endl;
+}
+
+void unusedLocalVar()
+{
+    int x = 0;
+    int y = 1;
+    std::cout << "Not gonna use any defined local var :)\n";
+}
+
+void mistakenUseOfEqualForDoubleEquals()
+{
+    int a;
+    a == 2;
+    std::cout << "a is " << a << std::endl;
+}
+
+void missingPrintfArgs()
+{
+    printf("decimal: %d / string: %s\n", 123);
+}
+
 int main()
 {
     // To experiment with analysis finding secret tokens in code
@@ -91,6 +135,13 @@ int main()
     useFakeClass();
     experimentWithArrays();
     workWithMap();
+    readChars();
+
+    localVarHidesParamVar(987);
+    mistakenUseOfEqualForDoubleEquals();
+    missingPrintfArgs();
+
+    unusedLocalVar();
 
     //return 0;
 }
