@@ -120,6 +120,22 @@ void missingPrintfArgs()
     printf("decimal: %d / string: %s\n", 123);
 }
 
+void loopingUsingTypesOfDifferentSize()
+{
+    std::cout << "sizeof(long): " << sizeof(long) << std::endl;
+    std::cout << "sizeof(short): " << sizeof(short) << std::endl;
+    // make this larger than size of short so i will overflow... e.g. 32768
+    // you'll get an infinite loop
+    long total = 32767;
+    for (short i = 0; i < total; i++)
+    {
+        if (i + 1 == total) {
+            std::cout << i << " ";
+        }
+    }
+    std::cout << std::endl;
+}
+
 int main()
 {
     // To experiment with analysis finding secret tokens in code
@@ -142,6 +158,7 @@ int main()
     missingPrintfArgs();
 
     unusedLocalVar();
+    loopingUsingTypesOfDifferentSize();
 
     //return 0;
 }
