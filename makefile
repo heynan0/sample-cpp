@@ -6,3 +6,12 @@ main.o: main.cpp
 
 FakeClass.o: FakeClass.cpp FakeClass.h
 	g++ -c FakeClass.cpp
+
+ifeq ($(OS), Windows_NT)
+REMOVE = del /Q
+else
+REMOVE = rm
+endif
+
+clean:
+	$(REMOVE) FakeClass.o main.o ThisIsMyExecutable.exe
